@@ -1,3 +1,5 @@
+var db = require('./db');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -10,5 +12,11 @@ app.listen(port, () => {
 });
 
 app.get('/api/hello', (req, res) => {
-    res.json({ message: 'Hello, World!' });
+  res.json({ message: 'Hello, World!' });
+
+
+  db.query("SELECT * FROM Pokemons", function (err, result) {
+    if (err) throw err;
+    console.log(result);
   });
+});
