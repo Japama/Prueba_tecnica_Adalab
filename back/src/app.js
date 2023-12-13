@@ -9,5 +9,5 @@ app.use('/api', pokemonRoutes);
 
 const port = process.env.PORT || 3003;
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Servidor iniciado en el puerto ${port}`);
 });
