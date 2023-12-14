@@ -36,7 +36,7 @@ const PokemonDetails = ({ }) => {
     }
     return (
         <div>
-            <div className="pokemon-details">
+            <div className="pokemon-details respirable">
                 <div className="pokemon-image-container">
                     <img src={pokemon.Image} alt={pokemon.Name} className="pokemon-image" />
                     <div className="pokemon-id">ID / {pokemon.Id}</div>

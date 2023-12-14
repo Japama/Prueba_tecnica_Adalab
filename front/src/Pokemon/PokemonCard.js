@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './PokemonCard.sass';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
 
 const PokemonCard = ({ pokemon }) => {
+    const [isActive, setIsActive] = useState(false);
+    
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate(`/pokemon/${pokemon.Id}`); 
+        setIsActive(true);
+        setTimeout(() => {
+            navigate(`/pokemon/${pokemon.Id}`); 
+        }, 200);
     };
 
     return (
-        <div className="pokemon-card" onClick={handleClick}>
+        <div className={`pokemon-card ${isActive ? 'pokemon-card-active' : ''}`} onClick={handleClick}>
             <div className="pokemon-image-container">
                 <img src={pokemon.Image} alt={pokemon.Name} className="pokemon-image" />
                 <div className="pokemon-id">ID / {pokemon.Id}</div>
@@ -21,9 +26,9 @@ const PokemonCard = ({ pokemon }) => {
                     <p><span className={"type " + pokemon.Type1}><b>{pokemon.Type1.toUpperCase()}</b> </span> <span className={"type " + pokemon.Type2}><b>{pokemon.Type2.toUpperCase()}</b></span></p>
                     <div className='evolution-container'>
                         {pokemon.EvolutionFrom ? (
-                            <p className='evolution'>Evoluciona de: <br /> {pokemon.EvolutionFrom}</p>
+                            <p className='evolution'>Evoluciona de: <br/> <b>{pokemon.EvolutionFrom} </b></p>
                         ) : (
-                            <p>&nbsp;</p>
+                            <p className='evolution'><b> Forma base</b> </p>
                         )}
                     </div>
                 </div>
