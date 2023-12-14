@@ -7,9 +7,13 @@ $border-radius: 0.25rem
 $fuente-input: 1rem
 
     
-.list 
-
-
+.pokemon-grid-container 
+    display: grid
+    grid-template-columns: repeat(3, 1fr) // 3 columnas de igual ancho
+    grid-gap: 20px // Espacio entre las tarjetas
+    padding: 20px // Un poco de padding alrededor de la rejilla
+    max-width: 1200px // Ancho máximo del contenedor de la rejilla
+    margin: 0 auto // Centrar el contenedor
 
 .filtro
     border: 1px solid $color-borde
@@ -20,6 +24,7 @@ $fuente-input: 1rem
     outline: none
     width: 40%
     text-align: center
+    margin: 1em
 
     // Cambio de estilo al enfocar el input
     &:focus 
