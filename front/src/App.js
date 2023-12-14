@@ -17,20 +17,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <div>
-          {/* <nav>
-            <ul>
-              <li>
-                <Link to="/pokemon/list">Lista Pokémon</Link>
-              </li>
-              <li>
-                <Link to="/pokemon/:id">Carta Pokémon</Link>
-              </li>
-            </ul>
-          </nav> */}
           <PokemonPage>
             <Routes>
               <Route path="/pokemon/list" element={<PokemonList />} />
-              <Route path="/pokemon/:id" element={<PokemonCard />} /> Ruta para PokemonCard dentro de PokemonPage
+              {/* <Route path="/pokemon/:id" element={<PokemonCard />} />  */}
             </Routes>
           </PokemonPage>
 
