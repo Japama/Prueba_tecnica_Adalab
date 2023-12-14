@@ -1,30 +1,26 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   BrowserRouter,
   Routes,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import './App.sass';
 
 // Importa tus componentes
 import PokemonList from './Pokemon/PokemonList';
 import PokemonPage from './Pokemon/PokemonPage';
-import PokemonCard from './Pokemon/PokemonCard';
+import PokemonDetails from "./Pokemon/PokemonDetail";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <div>
-          <PokemonPage>
-            <Routes>
-              <Route path="/pokemon/list" element={<PokemonList />} />
-              {/* <Route path="/pokemon/:id" element={<PokemonCard />} />  */}
-            </Routes>
-          </PokemonPage>
-
-        </div>
+        <PokemonPage>
+          <Routes>
+            <Route path="/pokemon/list" element={<PokemonList />} />
+            <Route path="/pokemon/:id" element={<PokemonDetails />} /> 
+          </Routes>
+        </PokemonPage>
       </BrowserRouter>
     </div>
   );
