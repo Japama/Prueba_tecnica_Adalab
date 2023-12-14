@@ -2,6 +2,7 @@ const pokemonRepository = require('../../repositories/pokemonRepository');
 const pokemonMongoRepository = require('../../repositories/pokemonMongoRepository');
 
 const getPokemons = async (req, res) => {
+    console.log("Se ha llamado a getPokemons");
     try {
         const pokemons = await pokemonRepository.getPokemonList();
         res.json(pokemons);
