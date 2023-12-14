@@ -6,7 +6,7 @@ const PokemonCard = ({ pokemon }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate(`/pokemon/${pokemon.Id}`); // Asume que tienes una ruta así configurada
+        navigate(`/pokemon/${pokemon.Id}`); 
     };
 
     return (
@@ -23,7 +23,7 @@ const PokemonCard = ({ pokemon }) => {
                         {pokemon.EvolutionFrom ? (
                             <p className='evolution'>Evoluciona de: <br /> {pokemon.EvolutionFrom}</p>
                         ) : (
-                            <p>&nbsp;</p>  /* Espacio reservado si no hay evolución */
+                            <p>&nbsp;</p>
                         )}
                     </div>
                 </div>
