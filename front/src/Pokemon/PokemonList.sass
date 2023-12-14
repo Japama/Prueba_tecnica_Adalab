@@ -6,8 +6,7 @@ $padding-input: 0.375rem 0.75rem
 $border-radius: 0.25rem
 $fuente-input: 2rem
 
-    
-.pokemon-grid-container 
+.pokemon-grid-container
     display: grid
     grid-template-columns: repeat(3, 1fr) // 3 columnas de igual ancho
     grid-gap: 2em
@@ -27,15 +26,11 @@ $fuente-input: 2rem
     margin: 2em auto
 
     // Cambio de estilo al enfocar el input
-    &:focus 
+    &:focus
         border-color: $color-foco
         box-shadow: 0 0 0 0.2rem rgba($color-foco, 0.25)
 
-
     // Estilos para cuando el input está deshabilitado
-    &:disabled 
+    &:disabled
         background-color: #e9ecef
         opacity: 1
-
-
-

@@ -27,7 +27,7 @@ const getPokemonById = async (id) => {
 
 const getPokemonFilter = async (filter) => {
     return new Promise((resolve, reject) => {
-        db.query("SELECT * FROM Pokemons WHERE Name LIKE '%"+filter+"%'" , (err, results) => {
+        db.query("SELECT * FROM Pokemons WHERE Name LIKE '%" + filter + "%'", (err, results) => {
             if (err) {
                 reject(err);
             } else {

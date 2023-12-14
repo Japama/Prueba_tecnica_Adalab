@@ -21,7 +21,7 @@ function App() {
           timeout={300}>
           <PokemonPage>
             <Routes location={location}>
-            <Route path="/" element={<PokemonList />} />              
+              <Route path="/" element={<PokemonList />} />
               <Route path="/pokemon/list" element={<PokemonList />} />
               <Route path="/pokemon/:id" element={<PokemonDetails />} />
             </Routes>

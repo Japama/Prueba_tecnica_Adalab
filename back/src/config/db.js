@@ -6,10 +6,9 @@ var con = mysql.createConnection({
   database: "adalab"
 });
 
-con.connect(function(err) {
+con.connect(function (err) {
   if (err) throw err;
   console.log("Conectado a MySQL");
 });
 
 module.exports = con;
- 

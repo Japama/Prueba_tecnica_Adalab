@@ -16,8 +16,8 @@ const getPokemonList = async () => {
 const getPokemonById = async (id) => {
     try {
         const db = getDb();
-        const collection = db.collection('Pokemons'); 
-        const pokemon = await collection.findOne({Id: parseInt(id)});
+        const collection = db.collection('Pokemons');
+        const pokemon = await collection.findOne({ Id: parseInt(id) });
         return pokemon;
     } catch (err) {
         console.error('Error al obtener el Pokemon:', err);

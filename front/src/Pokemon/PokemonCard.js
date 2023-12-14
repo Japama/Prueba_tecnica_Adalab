@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import './PokemonCard.sass';
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const PokemonCard = ({ pokemon }) => {
     const [isActive, setIsActive] = useState(false);
-    
+
     const navigate = useNavigate();
 
     const handleClick = () => {
         setIsActive(true);
         setTimeout(() => {
-            navigate(`/pokemon/${pokemon.Id}`); 
+            navigate(`/pokemon/${pokemon.Id}`);
         }, 200);
     };
 
@@ -26,7 +26,7 @@ const PokemonCard = ({ pokemon }) => {
                     <p><span className={"type " + pokemon.Type1}><b>{pokemon.Type1.toUpperCase()}</b> </span> <span className={"type " + pokemon.Type2}><b>{pokemon.Type2.toUpperCase()}</b></span></p>
                     <div className='evolution-container'>
                         {pokemon.EvolutionFrom ? (
-                            <p className='evolution'>Evoluciona de: <br/> <b>{pokemon.EvolutionFrom} </b></p>
+                            <p className='evolution'>Evoluciona de: <br /> <b> {pokemon.EvolutionFrom} </b></p>
                         ) : (
                             <p className='evolution'><b> Forma base</b> </p>
                         )}
