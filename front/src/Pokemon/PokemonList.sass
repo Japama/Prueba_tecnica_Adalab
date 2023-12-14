@@ -1,0 +1,36 @@
+
+$color-borde: #ced4da
+$color-foco: blue
+$color-texto: #495057
+$padding-input: 0.375rem 0.75rem
+$border-radius: 0.25rem
+$fuente-input: 1rem
+
+    
+.list 
+
+
+
+.filtro
+    border: 1px solid $color-borde
+    padding: $padding-input
+    border-radius: $border-radius
+    font-size: $fuente-input
+    color: $color-texto
+    outline: none
+    width: 40%
+    text-align: center
+
+    // Cambio de estilo al enfocar el input
+    &:focus 
+        border-color: $color-foco
+        box-shadow: 0 0 0 0.2rem rgba($color-foco, 0.25)
+
+
+    // Estilos para cuando el input está deshabilitado
+    &:disabled 
+        background-color: #e9ecef
+        opacity: 1
+
+
+
