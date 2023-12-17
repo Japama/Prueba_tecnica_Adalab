@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './PokemonList.sass'; // Importa el archivo SCSS aquí
 import { Pokemon } from './Pokemon';
 import PokemonCard from './PokemonCard';
@@ -22,8 +22,7 @@ const PokemonList = () => {
         }
     };
 
-
-    const fetchAndFilterPokemons = async () => {
+    const fetchAndFilterPokemons = useCallback(async () => {
         let url = 'http://localhost:3003/api/pokemon/';
 
         if (useMysql) {
@@ -40,13 +39,15 @@ const PokemonList = () => {
         } catch (error) {
             console.error('Error:', error);
         }
-    };
+    }, [useMysql, filterText]);
 
     useEffect(() => {
+
+
         if (!useLocal) {
             fetchAndFilterPokemons();
         }
-    }, [useMysql, filterText, useLocal]);
+    }, [useLocal, fetchAndFilterPokemons]);
 
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target;

@@ -9,7 +9,7 @@ const getPokemonList = async () => {
         return pokemons;
     } catch (err) {
         console.error('Error al obtener la lista de Pokemons:', err);
-        throw err; // Propaga el error para manejarlo en el controlador
+        throw err;
     }
 };
 
@@ -21,7 +21,7 @@ const getPokemonById = async (id) => {
         return pokemon;
     } catch (err) {
         console.error('Error al obtener el Pokemon:', err);
-        throw err; // Propaga el error para manejarlo en el controlador
+        throw err;
     }
 };
 
@@ -34,7 +34,7 @@ const getPokemonFilter = async (filter) => {
         return pokemon;
     } catch (err) {
         console.error('Error al obtener el Pokemon:', err);
-        throw err; // Propaga el error para manejarlo en el controlador
+        throw err;
     }
 };
 
