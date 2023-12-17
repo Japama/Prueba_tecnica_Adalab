@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import './PokemonList.sass'; // Importa el archivo SCSS aquí
+import './PokemonList.sass';
 import { Pokemon } from './Pokemon';
 import PokemonCard from './PokemonCard';
 

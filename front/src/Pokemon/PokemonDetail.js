@@ -26,7 +26,6 @@ const PokemonDetails = () => {
         fetchPokemon();
     }, [id]); 
 
-    // Manejador de clic
     const handleClick = () => {
         navigate(`/pokemon/list`);
     };
