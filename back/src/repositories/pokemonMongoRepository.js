@@ -26,7 +26,20 @@ const getPokemonById = async (id) => {
 };
 
 
+const getPokemonFilter = async (filter) => {
+    try {
+        const db = getDb();
+        const collection = db.collection('Pokemons');
+        const pokemon = await collection.find({ Name: new RegExp(filter, 'i') }).toArray();
+        return pokemon;
+    } catch (err) {
+        console.error('Error al obtener el Pokemon:', err);
+        throw err; // Propaga el error para manejarlo en el controlador
+    }
+};
+
 module.exports = {
     getPokemonList,
-    getPokemonById
+    getPokemonById,
+    getPokemonFilter
 };
