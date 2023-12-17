@@ -8,6 +8,20 @@ const PokemonList = () => {
     const [useMysql, setUseMysql] = useState(false);
     const [useLocal, setUseLocal] = useState(false);
     const [filterText, setFilterText] = useState('');
+    const [filteredPokemons, setFilteredPokemons] = useState([]);
+
+    const filterPokemonsLocally = (filter) => {
+
+        if (filter) {
+            const filtered = pokemons.filter(pokemon =>
+                pokemon.Name.toLowerCase().includes(filter.toLowerCase())
+            );
+            setFilteredPokemons(filtered);
+        } else {
+            setFilteredPokemons(pokemons);
+        }
+    };
+
 
     const fetchAndFilterPokemons = async () => {
         let url = 'http://localhost:3003/api/pokemon/';
@@ -29,10 +43,12 @@ const PokemonList = () => {
     };
 
     useEffect(() => {
-        fetchAndFilterPokemons();
-    }, [useMysql, filterText]);
+        if (!useLocal) {
+            fetchAndFilterPokemons();
+        }
+    }, [useMysql, filterText, useLocal]);
 
-    const handleChange = async (event) => {
+    const handleChange = (event) => {
         const { name, value, type, checked } = event.target;
 
         if (type === 'checkbox') {
@@ -40,12 +56,20 @@ const PokemonList = () => {
                 setUseMysql(checked);
             }
             if (name === 'local') {
-
+                setUseLocal(checked);
+                if (checked) {
+                    filterPokemonsLocally(filterText);
+                } else {
+                    fetchAndFilterPokemons();
+                }
             }
         } else if (type === 'text') {
             setFilterText(value);
+            if (useLocal) {
+                filterPokemonsLocally(value);
+            }
         }
-    }
+    };
 
     return (
         <div className="list">
@@ -55,8 +79,8 @@ const PokemonList = () => {
             <input type='checkbox' name="local" id="local" onChange={handleChange} />
             <label htmlFor="local">Filtrado local</label>
             <div className='pokemon-grid-container'>
-                {pokemons.map(pokemon => (
-                    <div key={pokemon.Id}> <PokemonCard pokemon={pokemon} /> </div> // Ajusta según la estructura de tus datos
+                {(useLocal ? filteredPokemons : pokemons).map(pokemon => (
+                    <div key={pokemon.Id}> <PokemonCard pokemon={pokemon} /> </div>
                 ))}
             </div>
         </div>
