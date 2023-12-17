@@ -5,45 +5,55 @@ import PokemonCard from './PokemonCard';
 
 const PokemonList = () => {
     const [pokemons, setPokemons] = useState([]);
-    const fetchPokemons = async () => {
+    const [useMysql, setUseMysql] = useState(false);
+    const [useLocal, setUseLocal] = useState(false);
+    const [filterText, setFilterText] = useState('');
+
+    const fetchAndFilterPokemons = async () => {
+        let url = 'http://localhost:3003/api/pokemon/';
+
+        if (useMysql) {
+            url += filterText ? `filter/${filterText}` : 'list';
+        } else {
+            url += filterText ? `filterMongo/${filterText}` : 'listMongo';
+        }
+
         try {
-            const response = await fetch('http://localhost:3003/api/pokemon/list');
+            const response = await fetch(url);
             const data = await response.json();
             const pokemonInstances = data.map(item => new Pokemon(item));
             setPokemons(pokemonInstances);
-            console.log(pokemonInstances);
         } catch (error) {
-            console.error('Error al cargar pokemons:', error);
+            console.error('Error:', error);
         }
     };
+
     useEffect(() => {
-
-
-        fetchPokemons();
-    }, []); // El array vacío asegura que el efecto se ejecute solo una vez
+        fetchAndFilterPokemons();
+    }, [useMysql, filterText]);
 
     const handleChange = async (event) => {
-        const filter = event.target.value;
-        console.log(filter);
-        if (filter === '')
-            fetchPokemons();
-        else {
-            try {
-                const response = await fetch('http://localhost:3003/api/pokemon/filter/' + filter);
-                const data = await response.json();
-                const pokemonInstances = data.map(item => new Pokemon(item));
-                setPokemons(pokemonInstances);
-                console.log(pokemonInstances);
-            } catch (error) {
-                console.error('Error al cargar pokemons filtrados:', error);
+        const { name, value, type, checked } = event.target;
 
-            };
+        if (type === 'checkbox') {
+            if (name === 'mysql') {
+                setUseMysql(checked);
+            }
+            if (name === 'local') {
+
+            }
+        } else if (type === 'text') {
+            setFilterText(value);
         }
     }
 
     return (
         <div className="list">
+            <label htmlFor="mysql">MySQL</label>
+            <input type='checkbox' name="mysql" id="mysql" onChange={handleChange} />
             <input className='filtro' name="filter" type="text" placeholder="Filtra pokémon por nombre" onChange={handleChange} />
+            <input type='checkbox' name="local" id="local" onChange={handleChange} />
+            <label htmlFor="local">Filtrado local</label>
             <div className='pokemon-grid-container'>
                 {pokemons.map(pokemon => (
                     <div key={pokemon.Id}> <PokemonCard pokemon={pokemon} /> </div> // Ajusta según la estructura de tus datos
@@ -54,3 +64,4 @@ const PokemonList = () => {
 };
 
 export default PokemonList;
+

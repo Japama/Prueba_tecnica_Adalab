@@ -1,19 +1,27 @@
 @keyframes grow-animation
-  0%
-    transform: scale(1)
-  100%
-    transform: scale(1.1)
-    
+    0%
+        opacity: 1
+    100%
+        opacity: 0.8
+
 .pokemon-card
     color: black
     display: flex
     flex-direction: column
     border: 1px solid #ccc
     background-color: #f9f9f9
-    border-radius: 10px
+    border-radius: 3px
     overflow: hidden
+    transition: transform 0.5s ease
+
     &:hover
-        animation: grow-animation 1s forwards
+        animation: grow-animation 0.5s forwards
+
+.pokemon-card-active
+    transform: scale(2)
+    opacity: 1
+    z-index: 100
+    position: relative
 
 .pokemon-image-container, .pokemon-info-container
     flex: 1
@@ -30,7 +38,7 @@
     text-align: left
 
 .pokemon-image
-    width: 100%
+    width: 50%
     height: auto
 
 .pokemon-id
@@ -59,68 +67,68 @@
 
 .bug
     border: solid #91a114
-    background-color: #91a114 
+    background-color: #91a114
 
 .dragon
     border: solid #4f60e2
-    background-color: #4f60e2 
+    background-color: #4f60e2
 
 .electric
     border: solid #fac100
-    background-color: #fac100 
+    background-color: #fac100
 
 .fairy
     border: solid #ef70ef
-    background-color: #ef70ef 
-    
+    background-color: #ef70ef
+
 .fighting
     border: solid #ff8100
-    background-color: #ff8100 
+    background-color: #ff8100
 
 .fire
     border: solid #e72324
-    background-color: #e72324 
+    background-color: #e72324
 
 .flying
     border: solid #82baef
-    background-color: #82baef 
+    background-color: #82baef
 
 .ghost
     border: solid #703f70
-    background-color: #703f70 
-    
+    background-color: #703f70
+
 .grass
     border: solid #3da224
-    background-color: #3da224 
+    background-color: #3da224
 
 .ground
     border: solid #92501b
-    background-color: #92501b 
+    background-color: #92501b
 
 .ice
     border: solid #3dd9ff
-    background-color: #3dd9ff 
+    background-color: #3dd9ff
 
 .normal
     border: solid #a0a2a0
-    background-color: #a0a2a0 
+    background-color: #a0a2a0
 
 .poison
     border: solid #923fcc
-    background-color: #923fcc 
+    background-color: #923fcc
 
 .psychic
     border: solid #ef3f7a
-    background-color: #ef3f7a 
+    background-color: #ef3f7a
 
 .rock
     border: solid #b0aa82
-    background-color: #b0aa82 
-    
+    background-color: #b0aa82
+
 .steel
     border: solid #60a2b9
-    background-color: #60a2b9 
+    background-color: #60a2b9
 
 .water
     border: solid #2481ef
-    background-color: #2481ef 
+    background-color: #2481ef

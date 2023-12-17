@@ -10,18 +10,20 @@ const PokemonDetails = ({ }) => {
 
     const [pokemon, setPokemon] = useState(null);
 
+    const fetchPokemon = async () => {
+        try {
+            const response = await fetch('http://localhost:3003/api/pokemon/mongo/' + id);
+            const data = await response.json();
+            const pokemonInstances = new Pokemon(data);
+            setPokemon(pokemonInstances);
+            console.log(pokemonInstances);
+        } catch (error) {
+            console.error('Error al cargar pokemons:', error);
+        }
+    };
+
     useEffect(() => {
-        const fetchPokemon = async () => {
-            try {
-                const response = await fetch('http://localhost:3003/api/pokemon/' + id);
-                const data = await response.json();
-                const pokemonInstances = new Pokemon(data[0]);
-                setPokemon(pokemonInstances);
-                console.log(pokemonInstances);
-            } catch (error) {
-                console.error('Error al cargar pokemons:', error);
-            }
-        };
+
 
         fetchPokemon();
     }, [id]); // El array vacío asegura que el efecto se ejecute solo una vez
@@ -36,7 +38,7 @@ const PokemonDetails = ({ }) => {
     }
     return (
         <div>
-            <div className="pokemon-details">
+            <div className="pokemon-details respirable">
                 <div className="pokemon-image-container">
                     <img src={pokemon.Image} alt={pokemon.Name} className="pokemon-image" />
                     <div className="pokemon-id">ID / {pokemon.Id}</div>
@@ -47,9 +49,9 @@ const PokemonDetails = ({ }) => {
                         <p><span className={"type " + pokemon.Type1}><b>{pokemon.Type1.toUpperCase()}</b> </span> <span className={"type " + pokemon.Type2}><b>{pokemon.Type2.toUpperCase()}</b></span></p>
                         <div className='evolution-container'>
                             {pokemon.EvolutionFrom ? (
-                                <p className='evolution'>Evoluciona de: <br /> {pokemon.EvolutionFrom}</p>
+                                <p className='evolution'>Evoluciona de: <br /> <b> {pokemon.EvolutionFrom} </b></p>
                             ) : (
-                                <p>&nbsp;</p>  /* Espacio reservado si no hay evolución */
+                                <p className='evolution'><b> Forma base</b> </p>
                             )}
                         </div>
                     </div>
