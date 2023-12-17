@@ -1,9 +1,8 @@
 const { MongoClient } = require('mongodb');
+require('dotenv').config();
 
-const url = 'mongodb://localhost:27017';
-const dbName = 'Adalab';
-
-const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(process.env.MONGO_URI);
+const dbName = process.env.MONGO_DB_NAME;
 
 let db;
 
