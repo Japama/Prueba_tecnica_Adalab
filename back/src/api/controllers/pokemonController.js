@@ -1,16 +1,6 @@
 const pokemonRepository = require('../../repositories/pokemonRepository');
 const pokemonMongoRepository = require('../../repositories/pokemonMongoRepository');
 
-const getPokemons = async (req, res) => {
-    console.log("Se ha llamado a getPokemons");
-    try {
-        const pokemons = await pokemonRepository.getPokemonList();
-        res.json(pokemons);
-    } catch (err) {
-        console.error('Error al obtener pokemons:', err);
-        res.status(500).json({ message: 'Error al obtener pokemons' });
-    }
-};
 
 const getPokemon = async (req, res) => {
     try {
@@ -26,11 +16,9 @@ const getPokemon = async (req, res) => {
     }
 };
 
-const filterPokemons = async (req, res) => {
-    console.log("Se ha llamado a filterPokemons");
+const getPokemons = async (req, res) => {
     try {
-        const filter = req.params.filter;
-        const pokemons = await pokemonRepository.getPokemonFilter(filter);
+        const pokemons = await pokemonRepository.getPokemonList();
         res.json(pokemons);
     } catch (err) {
         console.error('Error al obtener pokemons:', err);
@@ -38,10 +26,10 @@ const filterPokemons = async (req, res) => {
     }
 };
 
-const getPokemonsMongo = async (req, res) => {
+const filterPokemons = async (req, res) => {
     try {
-        const pokemons = await pokemonMongoRepository.getPokemonList();
-        console.log(pokemons);
+        const filter = req.params.filter;
+        const pokemons = await pokemonRepository.getPokemonFilter(filter);
         res.json(pokemons);
     } catch (err) {
         console.error('Error al obtener pokemons:', err);
@@ -53,7 +41,6 @@ const getPokemonMongo = async (req, res) => {
     try {
         const pokemonId = req.params.id;
         const pokemons = await pokemonMongoRepository.getPokemonById(pokemonId);
-        console.log(pokemons);
         res.json(pokemons);
     } catch (err) {
         console.error('Error al obtener pokemons:', err);
@@ -61,4 +48,25 @@ const getPokemonMongo = async (req, res) => {
     }
 };
 
-module.exports = { getPokemons, getPokemon, filterPokemons, getPokemonsMongo, getPokemonMongo };
+const getPokemonsMongo = async (req, res) => {
+    try {
+        const pokemons = await pokemonMongoRepository.getPokemonList();
+        res.json(pokemons);
+    } catch (err) {
+        console.error('Error al obtener pokemons:', err);
+        res.status(500).json({ message: 'Error al obtener pokemons' });
+    }
+};
+
+const filterPokemonsMongo = async (req, res) => {
+    try {
+        const filter = req.params.filter;
+        const pokemons = await pokemonMongoRepository.getPokemonFilter(filter);
+        res.json(pokemons);
+    } catch (err) {
+        console.error('Error al obtener pokemons:', err);
+        res.status(500).json({ message: 'Error al obtener pokemons' });
+    }
+};
+
+module.exports = { getPokemons, getPokemon, filterPokemons, getPokemonsMongo, getPokemonMongo, filterPokemonsMongo };
