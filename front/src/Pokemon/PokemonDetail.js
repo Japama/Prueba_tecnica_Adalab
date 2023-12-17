@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Pokemon } from './Pokemon';
 import './PokemonDetail.sass';
-// import './PokemonCard.sass';
 
-const PokemonDetails = ({ }) => {
+const PokemonDetails = () => {
     const navigate = useNavigate();
-    const { id } = useParams(); // Obtiene el id de los parámetros de la URL
+    const { id } = useParams();
 
     const [pokemon, setPokemon] = useState(null);
 
+    useEffect(() => {
+        
     const fetchPokemon = async () => {
         try {
             const response = await fetch('http://localhost:3003/api/pokemon/mongo/' + id);
@@ -22,11 +23,8 @@ const PokemonDetails = ({ }) => {
         }
     };
 
-    useEffect(() => {
-
-
         fetchPokemon();
-    }, [id]); // El array vacío asegura que el efecto se ejecute solo una vez
+    }, [id]); 
 
     // Manejador de clic
     const handleClick = () => {

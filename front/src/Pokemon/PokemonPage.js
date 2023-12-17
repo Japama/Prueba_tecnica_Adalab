@@ -1,7 +1,5 @@
 import React from 'react';
-import PokemonList from './PokemonList';
-import PokemonCard from './PokemonCard';
-import './PokemonPage.sass'; // Importa el archivo SCSS aquí
+import './PokemonPage.sass';
 
 function PokemonPage({ children }) {
     return (
