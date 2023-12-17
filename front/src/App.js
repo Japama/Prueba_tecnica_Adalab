@@ -15,18 +15,17 @@ function App() {
   return (
     <div className="App">
       <TransitionGroup>
-        <CSSTransition
-          key={location.key}
-          classNames="fade"
-          timeout={300}>
-          <PokemonPage>
-            <Routes location={location}>
-              <Route path="/" element={<PokemonList />} />
-              <Route path="/pokemon/list" element={<PokemonList />} />
-              <Route path="/pokemon/:id" element={<PokemonDetails />} />
-            </Routes>
-          </PokemonPage>
-        </CSSTransition>
+        <PokemonPage>
+          <Routes location={location}>
+            <Route path="/" element={
+              <CSSTransition classNames="fade" timeout={300}>
+                <PokemonList />
+              </CSSTransition>
+            } />
+            <Route path="/pokemon/list" element={<PokemonList />} />
+            <Route path="/pokemon/:id" element={<PokemonDetails />} />
+          </Routes>
+        </PokemonPage>
       </TransitionGroup>
     </div>
   );

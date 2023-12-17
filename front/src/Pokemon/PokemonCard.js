@@ -11,7 +11,7 @@ const PokemonCard = ({ pokemon }) => {
         setIsActive(true);
         setTimeout(() => {
             navigate(`/pokemon/${pokemon.Id}`);
-        }, 200);
+        }, 400);
     };
 
     return (
